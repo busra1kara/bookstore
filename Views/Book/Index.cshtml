@@ -1,0 +1,58 @@
+﻿@model List<Book>
+@if(TempData["basarili"] != null)
+{
+	<h4 class="text-danger">@TempData["basarili"]</h4>
+}
+
+<div class="container">
+	<div class="row pt-3 pb-4">
+		<div>
+			<h1>Kitaplar</h1>
+		</div>
+	</div>
+
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Kitap Adı</th>
+				<th>Tanım</th>
+				<th>Yazar</th>
+				<th>Fiyat</th>
+				<th>Kitap Türü</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach(var book in Model)
+			{
+				<tr>
+					<td>@book.Id</td>
+					<td>@book.BookName</td>
+					<td>@book.BookDefine</td>
+					<td>@book.Author</td>
+					<td>@book.Price</td>
+					<td>@book.BookType.Name</td>
+					<td style="width:200px;">
+						<a asp-controller="Book" asp-action="AddOrEdit" asp-route-id="@book.Id" type="button" class="btn btn-warning" style="width:200px;">
+							Güncelle
+						</a>
+					</td>
+					<td style="width:200px;">
+						<a asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id" type="button" class="btn btn-danger" style="width:200px;">
+							Sil
+						</a>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+
+	<div class="row pt-3 pb-2">
+		<div>
+			<a asp-controller="Book" asp-action="AddOrEdit" class="btn btn-lg btn-primary" type="button">
+				Kitap Ekle
+			</a>
+		</div>
+	</div>
+</div>
+

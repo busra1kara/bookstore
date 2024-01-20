@@ -1,0 +1,23 @@
+﻿@model BookHire
+
+<form method="post">
+	<div class="border p-3 mt-5">
+		<div class="row pb-3">
+			<h2 class="text-primary">Kiralama Kaydını Sil</h2>
+			<hr />
+		</div>
+		<div class="mb-3">
+			<label asp-for="StudentId"></label>
+			<input asp-for="StudentId" disabled class="form-control" />
+		</div>
+		<div class="mb-3">
+			<label asp-for="BookId"></label>
+			<select asp-for="BookId" asp-items="ViewBag.bookList" disabled class="form-select"></select>
+		</div>
+		<button type="submit" class="btn btn-lg btn-primary" style="width:250px">Sil</button>
+		<a asp-controller="BookHire" asp-action="Index" class="btn btn-lg btn-primary">
+			Kiralama İşlemine Geri Dön
+		</a>
+	</div>
+</form>
+

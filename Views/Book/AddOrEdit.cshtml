@@ -1,0 +1,93 @@
+﻿@model Book
+
+<form method="post" enctype="multipart/form-data">
+	<input asp-for="ImageUrl" hidden />
+	<div class="row">
+		<div class="col-10">
+			<div class="border p-3 mt-5">
+				<div class="row pb-3">
+					<h2 class="text-primary">@(Model == null ? "Kitap Ekle" : "Kitap Güncelle")</h2>
+					<hr />
+				</div>
+				<div class="mb-3">
+					<label asp-for="BookTypeId"></label>
+					<select asp-for="BookTypeId" asp-items="ViewBag.bookTypeList" class="form-select"></select>
+				</div>
+				<div class="mb-3">
+					<label asp-for="BookName"></label>
+					<input asp-for="BookName" id="input1" class="form-control" />
+					<span asp-validation-for="BookName" class="text-danger"></span>
+				</div>
+				<div class="mb-3">
+					<label asp-for="BookDefine"></label>
+					<input asp-for="BookDefine" id="input2" class="form-control" />
+					<span asp-validation-for="BookDefine" class="text-danger"></span>
+				</div>
+				<div class="mb-3">
+					<label asp-for="Author"></label>
+					<input asp-for="Author" id="input3" class="form-control" />
+					<span asp-validation-for="Author" class="text-danger"></span>
+				</div>
+				<div class="mb-3">
+					<label asp-for="Price"></label>
+					<input asp-for="Price" id="input4" class="form-control" />
+					<span asp-validation-for="Price" class="text-danger"></span>
+				</div>
+				<div class="mb-3">
+					<label asp-for="ImageUrl"></label>
+					<input type="file" name="file" class="form-control" />
+				</div>
+				@if (Model == null)
+				{
+					<button type="submit" class="btn btn-lg btn-primary" style="width:250px">Ekle</button>
+				}
+				else
+				{
+					<button type="submit" class="btn btn-lg btn-primary" style="width:250px">Güncelle</button>
+				}
+				<a asp-controller="Book" asp-action="Index" class="btn btn-lg btn-primary">
+					Kitap Listesine Geri Dön
+				</a>
+			</div>
+		</div>
+		<div class="col-2 mt-5">
+			@if (Model != null)
+			{
+				<img src="@Model.ImageUrl" width="100%" style="border: 1px solid #bbb9b9; border-radius: 7px" />
+			}
+		</div>
+	</div>
+</form>
+
+@* <button id="deneme">Deneme</button> *@
+<script>
+	// var button = $("#deneme");
+	// button.click(function () {
+	// 	var bookName = $("#input1").val();
+	// 	var bookDefine = $("#input2").val();
+	// 	var author = $("#input3").val();
+	// 	var price = $("#input4").val();
+	// 	var nesne = { "BookName": bookName, "BookDefine": bookDefine, "Author": author, "Price": price };
+	// 	console.log(nesne);
+	// 	$.ajax({
+	// 		url: '/Book/Deneme',
+	// 		dataType: 'json',
+	// 		type: 'POST',
+	// 		data: nesne,
+	// 		contentType: 'application/json; charset=utf-8',
+	// 		success: function (data) {
+	// 			console.log(data);
+	// 		}
+	// 	});
+	// });
+</script>
+
+
+
+
+
+@* @section Scripts{
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+} *@
